@@ -15,7 +15,7 @@ export async function connectTODB() {
     return {client: cachedClient, db: cachedDb}
   }
     
-    const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODE_PASSWORD}@cluster0.iyvfe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+    const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.iyvfe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
     // Create a MongoClient with a MongoClientOptions object to set the Stable API version
     const client = new MongoClient(uri, {
       serverApi: {
