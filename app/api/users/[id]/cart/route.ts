@@ -1,14 +1,13 @@
 import { NextRequest } from 'next/server';
-
 import { connectTODB } from '@/app/api/db';
 
-// type ShoppingCart = Record<string, string[]>;
+type ShoppingCart = Record<string, string[]>;
 
-// const carts: ShoppingCart = {
-//   '1': ['123', '234'],
-//   '2': ['345', '456'],
-//   '3': ['234'],
-// }
+const carts: ShoppingCart = {
+  '1': ['123', '234'],
+  '2': ['345', '456'],
+  '3': ['234'],
+}
 
 type Params = {
   id: string;
@@ -53,7 +52,7 @@ export async function POST(request: NextRequest, { params }: { params: Params })
 
   const updatedCart = await db.collection('carts').findOneAndUpdate(
     { userId },
-    { $push: { cartsIds: productId} },
+    { $push: { cartIds: productId } },
     { upsert: true, returnDocument: 'after' },
   )
 

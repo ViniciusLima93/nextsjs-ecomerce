@@ -1,26 +1,12 @@
-'use client'
+import ShoppingCartList from "./ShoppingCarList";
 
-import { products } from "@/product-data"
-import { useState } from "react"
-import Link from "next/link"
+export default async function CartPage() {
+  const response = await fetch('http://localhost:3000/api/users/2/cart',{
+    cache: 'no-cache'
+  });
+  const cartProducts = await response.json();
 
-
-export default function Cart () {
-    const [cartsId] = useState(['123', '345'])
-
-    const CartProduct = cartsId.map(id => products.find(p => p.id === id)!)
-    
-    return (
-        <>
-        <h1>Carts</h1>
-        {CartProduct.map(p => (
-            <Link key={p.id} href={"/product/" + p.id}>
-                <h3>{p.name}</h3>
-                <p>R$ {p.price}</p>
-            </Link>
-        ))}
-        
-        </>
-      
-    ) 
+  return (
+    <ShoppingCartList initialCartProducts={cartProducts} />
+  );
 }
